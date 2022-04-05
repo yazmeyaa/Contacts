@@ -10,6 +10,7 @@ export const Container = styled.div`
         border-radius: 12px;
         background-color: snow;
         width: fit-content;
+        height: fit-content;
         box-shadow: 1px 1px 8px 0px #909090;
     }
 `
@@ -29,6 +30,8 @@ export const InputsContainer = styled.form`
         align-items: center;
         flex-direction: column;
         padding: .5rem 1rem;
+        border: 1px solid red;
+        gap: 1rem;
     }
 `
 
@@ -36,7 +39,7 @@ export const CustomInput = styled.input`
                                             //TO DO:
                                             //Styles
     &{
-        padding: 4px 8px;
+        padding: 5px;
         border-radius: 8px;
         border: 1px solid #606060;
     }
@@ -44,8 +47,8 @@ export const CustomInput = styled.input`
         text-transform: capitalize;
     }
     &:focus{
-        outline: none;
-        
+        border: 1px solid #0356fc;
+        outline: #0356fc;
     }
 `
 
