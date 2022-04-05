@@ -25,6 +25,15 @@ async function start() {
 }
 
 app.use(express.json())
+app.use('*', (req:Request, res:Response, next)=> {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Methods", "*")
+    res.header("Access-Control-Allow-Headers", "authorization, Origin, Content-type")
+    if(req.method == "OPTIONS"){
+        return res.status(200).send("ok");
+    }
+    next();
+})
 
 interface ILoginData {
     email: string,

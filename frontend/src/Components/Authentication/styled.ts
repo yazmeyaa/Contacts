@@ -16,6 +16,7 @@ export const Container = styled.div`
         width: fit-content;
         height: fit-content;
         box-shadow: 1px 1px 8px 0px #909090;
+        transition: .5s;
     }
 `
 
@@ -69,5 +70,28 @@ export const LoginButton = styled.button`
 
     &:hover{
         background-color: #606060;
+    }
+`
+
+export const AuthSubText = styled.span`
+    &{
+
+    }
+`
+
+export const TextButton = styled.button`
+    &{
+        border: none;
+        background-color: none;
+        text-decoration: underline;
+        font-style: italic;
+        font-weight: 500;
+        cursor: pointer;
+        transition: .4s;
+        margin: 0px;
+        padding: 0px;
+    }
+    &:hover{
+        color: darkblue;
     }
 `
