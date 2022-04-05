@@ -5,6 +5,10 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         padding: .5rem 1rem;
         border: 1px solid black;
         border-radius: 12px;
@@ -30,14 +34,11 @@ export const InputsContainer = styled.form`
         align-items: center;
         flex-direction: column;
         padding: .5rem 1rem;
-        border: 1px solid red;
         gap: 1rem;
     }
 `
 
 export const CustomInput = styled.input`
-                                            //TO DO:
-                                            //Styles
     &{
         padding: 5px;
         border-radius: 8px;
@@ -53,12 +54,10 @@ export const CustomInput = styled.input`
 `
 
 export const LoginButton = styled.button`
-                                                //TO DO:
-                                                //Styles
     &{
         text-transform: uppercase;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 22px;
+        font-size: 16px;
         width: fit-content;
         padding: 4px 6px;
         font-weight: 400;
