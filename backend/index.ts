@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import Users from './models/userModel'
 const URI:string = 'mongodb+srv://yazmeyaa:123456Aa@contacts.xcivy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const app: Express = express()
-const PORT:number = 13913
+const PORT:number = 13813
 
 async function start() {
     try{

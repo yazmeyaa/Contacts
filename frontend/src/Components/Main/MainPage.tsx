@@ -1,12 +1,12 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import {Container, CustomLink} from './styled'
 
 const MainPage = () => {
     return(
-        <>
+        <Container>
             <h1>Wellcome to Contacts!</h1>
-            <Link to='/auth'> Login </Link>
-        </>
+            <CustomLink to='/auth'> Login </CustomLink>
+        </Container>
     )
 }
 

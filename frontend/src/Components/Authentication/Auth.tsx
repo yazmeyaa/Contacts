@@ -6,10 +6,12 @@ import axios from "axios";
 const Auth: React.FC = () => {
     const [isCurrentAuthentication, setCurrentMode] = useState<boolean>(true)
 
-    function handleSubmit(email: string, password: string) {
-                                            //TO DO:
-                                            //Fetch to backend server
-        console.log(email, password)
+    function handleSubmit() {
+        if(isCurrentAuthentication){
+            handleAuth()
+        } else{
+            handleRegister()
+        }
     }
 
     const formik = useFormik({
@@ -17,22 +19,36 @@ const Auth: React.FC = () => {
             email: '',
             password: ''
         },
-        onSubmit: (values) => {
-            handleSubmit(values.email, values.password)
+        onSubmit: () => {
+            handleSubmit()
         }
     })
 
     async function handleAuth(){
         const {email, password} = formik.values
-        const data = await axios.post('http://localhost:13913/register', {email: email, password: password})
-        if(data.status === 200){
+        const data = await axios.post('http://localhost:13813/login', {email: email, password: password})
+        .then(rcvData => {return rcvData.data}, onError => {alert('Error!')})
+        console.log(data)
+        
+    }
 
-        }
+    async function handleRegister() {
+        const {email, password} = formik.values
+        const data = await axios.post('http://localhost:13813/register', {email: email, password: password})
+        .then(data => {
+            if(data.status === 200){
+                alert('ok')
+                return data.data
+            } else if(data.status > 400){
+                alert('error')
+            }
+        })
+        alert(data.data)
     }
 
     function handleChangeMode(){
         setCurrentMode((value)=>!value)
-    }                                        
+    }
 
     return(
         <Container>
@@ -51,11 +67,12 @@ const Auth: React.FC = () => {
                     onChange={formik.handleChange} 
                     value={formik.values.password} 
                     placeholder='password' />
-                    {isCurrentAuthentication ? <LoginButton type='submit' onClick={handleAuth}>login</LoginButton> : <LoginButton type='submit'>register</LoginButton>}
-                <div>
-                    <ModeSwitcher isAuth={isCurrentAuthentication} /> <TextButton onClick={handleChangeMode}>{isCurrentAuthentication ? 'Register now.' : 'Log in now.'}</TextButton>
-                </div>
+                    {isCurrentAuthentication ? <LoginButton type='submit'>login</LoginButton> : <LoginButton type='submit'>register</LoginButton>}
             </InputsContainer>
+                <div>
+                    <ModeSwitcher isAuth={isCurrentAuthentication} />
+                    <TextButton onClick={handleChangeMode}>{isCurrentAuthentication ? ' Register now.' : ' Log in now.'}</TextButton>
+                </div>
         </Container>
     )
 }

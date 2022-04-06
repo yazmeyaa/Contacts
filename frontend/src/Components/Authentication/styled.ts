@@ -31,6 +31,7 @@ export const TitleText = styled.h1`
 
 export const InputsContainer = styled.form`
     &{
+        font-size: 24px;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -58,7 +59,7 @@ export const LoginButton = styled.button`
     &{
         text-transform: uppercase;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 16px;
+        font-size: 20px;
         width: fit-content;
         padding: 4px 6px;
         font-weight: 400;
@@ -70,19 +71,21 @@ export const LoginButton = styled.button`
 
     &:hover{
         background-color: #606060;
+        color: white;
     }
 `
 
 export const AuthSubText = styled.span`
     &{
-
+        font-size: 18px;
     }
 `
 
 export const TextButton = styled.button`
     &{
+        font-size: 18px;
         border: none;
-        background-color: none;
+        background-color: transparent;
         text-decoration: underline;
         font-style: italic;
         font-weight: 500;
