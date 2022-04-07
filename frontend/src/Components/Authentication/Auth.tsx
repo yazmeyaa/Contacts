@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {Container, TitleText, InputsContainer, CustomInput, LoginButton, AuthSubText, TextButton} from './styled'
 import {useFormik} from 'formik'
 import axios from "axios";
+import { useTypedSelector } from "../../redux/reducers/useTypedSelector";
 
 const Auth: React.FC = () => {
     const [isCurrentAuthentication, setCurrentMode] = useState<boolean>(true)
+    const JWT = useTypedSelector( state => state.JWT)
+
+    useEffect(()=>{
+        console.log(JWT)
+    },[JWT])
 
     function handleSubmit() {
         if(isCurrentAuthentication){
@@ -25,11 +31,12 @@ const Auth: React.FC = () => {
     })
 
     async function handleAuth(){
-        const {email, password} = formik.values
+       /* const {email, password} = formik.values
         const data = await axios.post('http://localhost:13813/login', {email: email, password: password})
         .then(rcvData => {return rcvData.data}, onError => {alert('Error!')})
         console.log(data)
-        
+        */
+       
     }
 
     async function handleRegister() {

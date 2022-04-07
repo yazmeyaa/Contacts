@@ -1,27 +1,52 @@
-import {contactsActions} from '../actions/actions'
-const FETCH_CONTACTS = 'ADD_CONTACT'
-const ADD_CONTACT = 'ADD_CONTACT'
-const EDIT_CONTACT = 'ADD_CONTACT'
-const REMOVE_CONTACT = 'ADD_CONTACT'
+import { ContactAction, ContactActionTypes, singleContact } from '../types/contacts'
 
 interface IContactsInitialState {
-    contactList: [],
+    contactList: [] | Array<singleContact>,
 }
 
-const initialState: IContactsInitialState = {
-    contactList: []
+const initialState: IContactsInitialState = {           //TODO:
+    contactList: [{                                     //-empty array =_=
+        name: 'Evgeniy',
+        lastName: 'Antonenkov',
+        phoneNumber: '+79506825716',
+        id: 1
+    },
+    {
+        name: 'Alexey',
+        lastName: 'Avramov',
+        phoneNumber: '+79512825732',
+        id: 2
+    },
+    {
+        name: 'Ivan',
+        lastName: 'Pupkin',
+        phoneNumber: '+79446825535',
+        id: 3
+    },
+    {
+        name: 'Valery',
+        lastName: 'Karpov',
+        phoneNumber: '+79236825715',
+        id: 4
+    }]
 }
 
-interface IUserAction {
-    type: string;
-    payload?: any;
-}
-
-export const contactsReducer = (state = initialState, action: IUserAction):IContactsInitialState => {
+export const contactsReducer = (state = initialState, action: ContactAction):IContactsInitialState => {
     switch(action.type){
-        case FETCH_CONTACTS:
-            return {...state, contactList: action.payload}
-            break
+        case ContactActionTypes.FETCH_CONTACT:
+            return{ ...state, contactList: action.payload }
+        case ContactActionTypes.ADD_CONTACTS:
+            return {...state, ...action.payload}
+        case ContactActionTypes.EDIT_CONTACT:       //TODO:
+            return {...state}                       //-EDIT_CONTACT
+
+        case ContactActionTypes.REMOVE_CONTACT:{
+            const newArray = state.contactList.filter(function(currentValue){
+                return currentValue.id.toString() === action.payload ? false : true
+            })
+            return {...state, contactList: newArray}
+        }
+
         default: 
             return state
     }

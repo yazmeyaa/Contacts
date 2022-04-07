@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {Container, CustomLink} from './styled'
 
 const MainPage = () => {
