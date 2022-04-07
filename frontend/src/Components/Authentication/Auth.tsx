@@ -31,12 +31,10 @@ const Auth: React.FC = () => {
     })
 
     async function handleAuth(){
-       /* const {email, password} = formik.values
+        const {email, password} = formik.values
         const data = await axios.post('http://localhost:13813/login', {email: email, password: password})
         .then(rcvData => {return rcvData.data}, onError => {alert('Error!')})
         console.log(data)
-        */
-       
     }
 
     async function handleRegister() {
