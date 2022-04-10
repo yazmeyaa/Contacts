@@ -42,11 +42,13 @@ interface ILoginData {
 
 app.post('/login', async(req: Request, res: Response)=>{
     const {email, password}:ILoginData = await req.body
+    console.log(email, password)
     if( !(email && password) ){
         return res.status(403).send({message: 'Every fields is required'})
     }
-    
+    console.log('Ищем в БД', email)
     const userData = await Users.findOne({email: email})
+
     if(userData && userData.password == password){
         return res.status(200).send({JWT: 'SOME.JWT.STRING'})
     }
@@ -56,13 +58,15 @@ app.post('/login', async(req: Request, res: Response)=>{
 
 app.post('/register', async(req: Request, res: Response)=>{
     const {email, password}: ILoginData = await req.body
+    console.log(email, password)
     
     if( !(email && password) ){
         return res.status(403).send({message: 'Every fields is required'})
     }
 
     const isUserAlreadyExist = await Users.findOne({email: email})
-    if(isUserAlreadyExist){
+
+   if(isUserAlreadyExist){
         return res.status(400).send({message: 'This email is already taken'})
     }
 

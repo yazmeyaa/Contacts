@@ -1,9 +1,9 @@
 import {Routes, Route, Navigate} from 'react-router-dom'
 
-import { Auth } from '../../Components/Authentication/Auth'
-import { Contacts } from '../../Components/Contacts/Contacts'
-import { NotFound } from '../../Components/NotFound/NotFound'
-import { MainPage } from '../../Components/Main/MainPage'
+import { Auth } from '../Components/Authentication/Auth'
+import { Contacts } from '../Components/Contacts/Contacts'
+import { NotFound } from '../Components/NotFound/NotFound'
+import { MainPage } from '../Components/Main/MainPage'
 
 
 const Router = () => {
