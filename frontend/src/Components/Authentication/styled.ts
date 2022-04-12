@@ -65,13 +65,13 @@ export const LoginButton = styled.button`
         font-weight: 400;
         border: 1px solid gray;
         border-radius: 8px;
-        cursor: pointer;
         transition: .3s;
     }
 
-    &:hover{
+    &:not(:disabled):hover{
         background-color: #606060;
         color: white;
+        cursor: pointer;
     }
 `
 

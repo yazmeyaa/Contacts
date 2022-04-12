@@ -1,12 +1,17 @@
 import  express, {Express, Request, Response} from "express";
 import mongoose from "mongoose";
-import login from "./middleware/login";
-import Users from './models/userModel'
-const URI:string = 'mongodb+srv://yazmeyaa:123456Aa@contacts.xcivy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+import config from 'config'
+const URI: string = config.get('mongoKey')
 const app: Express = express()
 const PORT:number = 13813
 
-import checkToken from './middleware/checkToken/checkToken'
+//import middlewares
+import login from "./middleware/API/login";
+import register from './middleware/API/register'
+import getContacts from "./middleware/API/contacts/getContactList/getcontacts";
+//
+
+import checkToken from './middleware/API/checkToken/checkToken'
 
 async function start() {
     try{
@@ -38,41 +43,13 @@ app.use('*', (req:Request, res:Response, next)=> {
     next();
 })
 
-interface ILoginData {
-    email: string,
-    password: string
-}
 
-app.post('/login',  login)
+app.post('/api/login',  login)
 
-app.post('/checktoken', checkToken)
+app.post('/api/checktoken', checkToken)
 
-app.post('/register', async(req: Request, res: Response)=>{
-    const {email, password}: ILoginData = await req.body
-    console.log(email, password)
-    
-    if( !(email && password) ){
-        return res.status(403).send({message: 'Every fields is required'})
-    }
+app.post('/api/register', register)
 
-    const isUserAlreadyExist = await Users.findOne({email: email})
-
-    if(isUserAlreadyExist){
-        return res.status(400).send({message: 'This email is already taken'})
-    }
-
-    const newUser = new Users({
-        email: email,
-        password: password
-    })
-
-    await newUser.save()
-    console.log('OK')
-    res.status(200).send({message: 'ok'})
-})
-
-app.post('/getContacts', (req: Request, res: Response) => {
-
-})
+app.post('/api/contacts', getContacts)
 
 start()

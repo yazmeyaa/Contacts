@@ -1,3 +1,4 @@
 {
-    "JWTsecret": "3jkllkwegjr"
+    "JWTsecret": "3jkllkwegjr",
+    "mongoKey": "mongodb+srv://yazmeyaa:123456Aa@contacts.xcivy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 }

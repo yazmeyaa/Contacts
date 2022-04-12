@@ -7,7 +7,7 @@ import { DataType, dataFromServer } from '../types/types'
 export async function handleAuth(values: DataType, dispatch: Dispatch<UserActions>){
     dispatch({type: userActionsEnum.JWT_FETCH_START})
 
-    const rcv_data = await axios.post('http://localhost:13813/login', values)
+    const rcv_data = await axios.post('http://localhost:13813/api/login', values)
     .then((response: AxiosResponse<{JWT: string}>) => {
         return new dataFromServer(response.data.JWT)
     }, (error)=>{

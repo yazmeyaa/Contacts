@@ -1,7 +1,8 @@
 import { ContactAction, ContactActionTypes, singleContact } from '../types/contacts'
 
+
 interface IContactsInitialState {
-    contactList: [] | Array<singleContact>,
+    contactList: Array<singleContact> | []
 }
 
 const initialState: IContactsInitialState = {           //TODO:

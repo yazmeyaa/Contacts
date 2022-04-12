@@ -1,7 +1,7 @@
 import {Request, Response} from 'express'
 import JWT from 'jsonwebtoken'
 import config from 'config'
-import Users from '../../models/userModel'
+import Users from '../../../models/userModel'
 
 type UserDataType = {
     email: string,
