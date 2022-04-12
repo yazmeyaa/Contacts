@@ -1,4 +1,5 @@
 import {Routes, Route, Navigate} from 'react-router-dom'
+import { useTypedSelector } from '../redux/reducers/useTypedSelector'
 
 import { Auth } from '../Components/Authentication/Auth'
 import { Contacts } from '../Components/Contacts/Contacts'
@@ -11,7 +12,11 @@ const Router = () => {
     return(
         <Routes>
             <Route path='/' element={<MainPage />}/>
-            <Route path='/auth' element={<Auth />} />
+            <Route path='/auth' element={
+                <AuthRoute>
+                    <Auth />
+                </AuthRoute>
+            } />
             <Route path='/contacts' element={
                 <ProtectedRoute>
                     <Contacts />
@@ -29,10 +34,16 @@ interface IProtectedRouteProps {
 }
 
 const ProtectedRoute = ({children}: IProtectedRouteProps) => {
-    const userToken:string = ''    
-    
+    const userToken = useTypedSelector(state => state.JWT.JWT)
     return userToken ? children : <Navigate to={{pathname: '/auth'}} />
 }
+
+const AuthRoute = ({children}: IProtectedRouteProps) => {
+    const userToken = useTypedSelector(state => state.JWT.JWT)
+    console.log(userToken)
+    return userToken ? <Navigate to={{pathname: '/contacts'}} /> : children
+}
+
 
 
 export {Router}

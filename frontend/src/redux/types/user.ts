@@ -1,8 +1,8 @@
 export enum userActionsEnum {
     SET_JWT = 'SET_JWT',
     REMOVE_JWT = 'REMOVE_JWT',
-    SET_MESSAGE_VISIBLE = 'SET_MESSAGE_VISIBLE',
-    SET_MESSAGE_TEXT = 'SET_MESSAGE_TEXT'
+    JWT_FETCH_START = 'JWT_FETCH_START',
+    JWT_FETCH_END = 'JWT_FETCH_END'
 }
 
 interface ISetJWTAction{
@@ -14,15 +14,13 @@ interface IRemoveJWTAction{
     type: userActionsEnum.REMOVE_JWT
 }
 
-interface ISetMessageVisible{
-    type: userActionsEnum.SET_MESSAGE_VISIBLE,
-    payload: boolean
+interface IJWT_FETCH_START{
+    type: userActionsEnum.JWT_FETCH_START,
 }
 
-interface ISetMessageText{
-    type: userActionsEnum.SET_MESSAGE_TEXT,
-    payload: string
+interface IJWT_FETCH_END{
+    type: userActionsEnum.JWT_FETCH_END,
 }
 
 
-export type UserActions = ISetJWTAction | IRemoveJWTAction | ISetMessageVisible | ISetMessageText
+export type UserActions = ISetJWTAction | IRemoveJWTAction | IJWT_FETCH_START | IJWT_FETCH_END

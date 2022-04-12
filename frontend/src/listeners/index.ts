@@ -3,7 +3,7 @@ function addListeners() {
 }
 
 function handleStorageListener(){
-    alert('Do something!')
+    console.log('StorageChanged')
 }
 
 export default addListeners

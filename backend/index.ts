@@ -1,9 +1,12 @@
 import  express, {Express, Request, Response} from "express";
 import mongoose from "mongoose";
+import login from "./middleware/login";
 import Users from './models/userModel'
 const URI:string = 'mongodb+srv://yazmeyaa:123456Aa@contacts.xcivy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const app: Express = express()
 const PORT:number = 13813
+
+import checkToken from './middleware/checkToken/checkToken'
 
 async function start() {
     try{
@@ -40,21 +43,9 @@ interface ILoginData {
     password: string
 }
 
-app.post('/login', async(req: Request, res: Response)=>{
-    const {email, password}:ILoginData = await req.body
-    console.log(email, password)
-    if( !(email && password) ){
-        return res.status(403).send({message: 'Every fields is required'})
-    }
-    console.log('Ищем в БД', email)
-    const userData = await Users.findOne({email: email})
+app.post('/login',  login)
 
-    if(userData && userData.password == password){
-        return res.status(200).send({JWT: 'SOME.JWT.STRING'})
-    }
-
-    return res.status(400).send({message: 'wrong user data'})
-})
+app.post('/checktoken', checkToken)
 
 app.post('/register', async(req: Request, res: Response)=>{
     const {email, password}: ILoginData = await req.body
@@ -66,7 +57,7 @@ app.post('/register', async(req: Request, res: Response)=>{
 
     const isUserAlreadyExist = await Users.findOne({email: email})
 
-   if(isUserAlreadyExist){
+    if(isUserAlreadyExist){
         return res.status(400).send({message: 'This email is already taken'})
     }
 
