@@ -14,7 +14,7 @@ const SingleContact:React.FC<SingleContactProps> = ({name, lastName, phoneNumber
     const token = localStorage.getItem('JWT')
 
     const fetchToken = () => {
-        axios.post('http://localhost:13813/api/getcontacts', {token: token})
+        axios.post('http://localhost:13813/api/contacts', {token: token})
     }
     
     return(

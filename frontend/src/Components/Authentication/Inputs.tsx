@@ -1,5 +1,5 @@
 import React from "react";
-import { handleSubmit } from './functions/fetching'
+import { handleSubmit } from './functions/handleSubmit'
 import {InputsContainer, CustomInput, LoginButton} from './styled'
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
@@ -12,6 +12,7 @@ interface IInputsProps {
 export const Inputs: React.FC<IInputsProps> = ({isCurrentAuthentication}) => {
     const {loading} = useTypedSelector(state => state.JWT)
     const dispatch = useDispatch()
+
     const formik = useFormik({
         initialValues: {
             email: '',

@@ -40,7 +40,6 @@ const ProtectedRoute = ({children}: IProtectedRouteProps) => {
 
 const AuthRoute = ({children}: IProtectedRouteProps) => {
     const userToken = useTypedSelector(state => state.JWT.JWT)
-    console.log(userToken)
     return userToken ? <Navigate to={{pathname: '/contacts'}} /> : children
 }
 

@@ -9,6 +9,7 @@ const PORT:number = 13813
 import login from "./middleware/API/login";
 import register from './middleware/API/register'
 import getContacts from "./middleware/API/contacts/getContactList/getcontacts";
+import createNewContact from "./middleware/API/contacts/createNewContact/createNewContact";
 //
 
 import checkToken from './middleware/API/checkToken/checkToken'
@@ -50,6 +51,6 @@ app.post('/api/checktoken', checkToken)
 
 app.post('/api/register', register)
 
-app.post('/api/contacts', getContacts)
+app.post('/api/contacts', createNewContact)
 
 start()

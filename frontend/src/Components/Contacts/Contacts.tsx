@@ -8,7 +8,7 @@ const Contacts: React.FC = () => {
     return(
         <ContactsContainer>
             {contacts.map((item, index)=>{
-                return <SingleContact name={item.name} lastName={item.lastName} phoneNumber={item.phoneNumber} id={item.id}/>
+                return <SingleContact name={item.name} lastName={item.lastName} phoneNumber={item.phoneNumber} id={item.id} key={index}/>
             })}
         </ContactsContainer>
     )
